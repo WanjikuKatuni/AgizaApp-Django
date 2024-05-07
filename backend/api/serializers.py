@@ -30,7 +30,7 @@ class CustomerSerializer(serializers.ModelSerializer):
 
 
 # serializer for the order model
-class OrderSerializer(serializer.ModelSerializer):
+class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = ["id", "customer", "item", "amount", "author", "created_at"]
