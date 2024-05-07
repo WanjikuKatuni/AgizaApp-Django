@@ -1,6 +1,7 @@
 # serializers which will take object info and translate to json and vice versa
 from django.contrib.auth.models import User 
 from rest_framework import serializers
+from .models import Customer, Order
 
 
 
@@ -16,3 +17,21 @@ class UserSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)
         return user
+
+
+
+# serializer for customer model
+class CustomerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Customer
+        fields = ["id", "name", "code", "author", "created_at"]
+        extra_kwargs = {"author": {"read_only": True}}
+
+
+
+# serializer for the order model
+class OrderSerializer(serializer.ModelSerializer):
+    class Meta:
+        model = Order
+        fields = ["id", "customer", "item", "amount", "author", "created_at"]
+        extra_kwargs = {"author": {"read_only": True}}
