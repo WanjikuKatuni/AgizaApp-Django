@@ -23,7 +23,7 @@ class CustomerListCreateAPIView(generics.ListCreateAPIView):
         check if data from serializer is valid
         """
         if serializer.is_valid():
-            serializer.save(author=self.request.user)
+            serializer.save(created_by=self.request.user)
         else:
             # print(serializer.errors)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -53,7 +53,7 @@ class OrderListCreateAPIView(generics.ListCreateAPIView):
         check if data from serializer is valid
         """
         if serializer.is_valid():
-            serializer.save(author=self.request.user)
+            serializer.save(created_by=self.request.user)
         else:
             # print(serializer.errors) 
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

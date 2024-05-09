@@ -24,8 +24,8 @@ class UserSerializer(serializers.ModelSerializer):
 class CustomerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Customer
-        fields = ["id", "name", "code", "author", "created_at"]
-        extra_kwargs = {"author": {"read_only": True}}
+        fields = ["id", "customerName", "customerCode", "phonenumber", "created_by", "created_at"]
+        extra_kwargs = {"created_by": {"read_only": True}}
 
 
 
@@ -33,5 +33,5 @@ class CustomerSerializer(serializers.ModelSerializer):
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
-        fields = ["id", "customer", "item", "amount", "author", "created_at"]
-        extra_kwargs = {"author": {"read_only": True}}
+        fields = ["id", "customer", "itemName", "itemAmount ", "created_by", "created_at"]
+        extra_kwargs = {"created_by": {"read_only": True}}
