@@ -44,9 +44,14 @@ class OrderListCreateAPIView(generics.ListCreateAPIView):
     """
     create and list order details
     """
-    queryset = Order.objects.all()
+    # queryset = Order.objects.all()
     serializer_class = OrderSerializer
     permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        customer_id = self.kwargs.get('customer_id')
+        return Order.objects.filter(customer_id=customer_id)
 
     def perform_create(self, serializer):
         """
@@ -68,10 +73,17 @@ class OrderDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = OrderSerializer
     permission_classes = [IsAuthenticated]
 
+    # def get_queryset(self):
+    #     customer_id = self.kwargs.get('customer_id')
+    #     return Order.objects.filter(customer_id=customer_id)
+
 
 
 # view for creating a new user
 class CreateUserView(generics.CreateAPIView):
+    """
+    creating a new user
+    """
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [AllowAny]

@@ -5,6 +5,7 @@ import Home from "./pages/Home"
 import NotFound from "./pages/NotFound"
 import {BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import ProtectedRoute from "./components/ProtectedRoute"
+import CustomerOrderDetails from "./pages/CustomerOrderDetails"
 
 function Logout() {
   localStorage.clear()
@@ -26,6 +27,12 @@ function App() {
       <Route path="/" element={
         <ProtectedRoute>
           <Home />
+        </ProtectedRoute>
+      }
+      />
+      <Route path="/customers/details/:customerId" element={
+        <ProtectedRoute>
+          <CustomerOrderDetails/>
         </ProtectedRoute>
       }
       />

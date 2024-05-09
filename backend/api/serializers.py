@@ -33,5 +33,5 @@ class CustomerSerializer(serializers.ModelSerializer):
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
-        fields = ["id", "customer", "itemName", "itemAmount ", "created_by", "created_at"]
+        fields = ["id", "customer", "itemName", "itemAmount", "created_by", "created_at"]
         extra_kwargs = {"created_by": {"read_only": True}}

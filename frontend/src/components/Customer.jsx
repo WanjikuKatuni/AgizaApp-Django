@@ -1,8 +1,16 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function Customer({customer, onDelete}) {
     // Format date
     const formattedDate = new Date(customer.created_at).toLocaleDateString("en-US")
+
+    const navigate = useNavigate()
+
+    // navigate to customerorderlist/details of each customer
+    const checkOrder = () => {
+        navigate(`/customers/details/${customer.id}`)
+    }
 
 
   return (
@@ -14,8 +22,8 @@ function Customer({customer, onDelete}) {
         <td className='customer-date'>{formattedDate}</td>
         <td className='createdby'>{customer.created_by}</td>
 
-        <button className='delete-button' onClick={() => onDelete(customer.id)}>
-            Add Order
+        <button className='addorder-button' onClick={checkOrder}>
+            Check Orders
         </button>
         <button className='delete-button' onClick={() => onDelete(customer.id)}>
             Delete Client
