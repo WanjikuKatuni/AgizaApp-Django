@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import api from "../api";
+import Customer from "../components/Customer";
 
 
 // component that renders customer management functionality. 
@@ -63,11 +64,9 @@ function Home() {
 
 
         <>
-        <div>
-           <h1>Customers</h1>
-        </div>
-        
-        <h2>Add Customer</h2>
+           <h1>Our Clients</h1>
+        {/* list of customers */}
+        <h2>Add Client</h2>
         <form onSubmit={createCustomer}>
           <label htmlFor="customerName">Customer Name:</label>
           <br />
@@ -89,6 +88,27 @@ function Home() {
 
           
         </form>
+
+        <div>
+            <h2>Client List</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">CustomerName</th>
+                        <th scope="col">CustomerCode</th>
+                        <th scope="col">PhoneNumber</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Created_by</th>
+                    </tr>
+                </thead>
+                <tbody>
+           {customers.map((customer) => <Customer customer={customer} onDelete={deleteCustomer} key={customer.id} /> )}
+
+                </tbody>
+            </table>
+        </div>
+        
         </>
   )
 
