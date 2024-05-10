@@ -24,6 +24,11 @@ h2{
     font-size: 50px;
     font-weight: 400;
 }
+.customer-name {
+    font-size: 20px;
+    font-weight: 300;
+    margin-left: 50px;
+}
 
 .form-container {
     display: flex;
@@ -167,3 +172,4 @@ h2{
     touch-action: manipulation;
     vertical-align: middle;
 }
+

@@ -10,6 +10,7 @@ function CustomerOrderDetails() {
   const [orders, setOrders] = useState([]);
   const [itemName, setItemName] = useState("");
   const [itemAmount, setItemAmount] = useState("");
+  const [customer, setCustomer] = useState({});
 
   const { customerId } = useParams();
   // console.log(customerId)
@@ -24,9 +25,21 @@ function CustomerOrderDetails() {
   // get all ordersof the customer as soon as the page loads/mounts
   useEffect(() => {
     if(customerId) {
+      getCustomer()
       getOrders();
     }
   }, [customerId]);
+
+
+  // get customer details
+  const getCustomer = () => {
+    api.get(`/api/customers/details/${customerId}/`).then((res) => {
+      setCustomer(res.data);
+    }).catch((err) => {
+      alert(err);
+      console.error(err);
+    });
+  };
 
   // get all orders for the client
   const getOrders = () => {
@@ -118,7 +131,9 @@ function CustomerOrderDetails() {
         <div className="col-md-1"></div>
         <div className="col-md-8">
           {/* list of client orders */}
-          <h1 className="header">Client Orders</h1>
+         
+          
+          <h1 className="header">Client Orders  <span className="customer-name">{customer.customerName}</span></h1>
           <table className="styled-table">
           <thead>
             <tr>
@@ -127,19 +142,23 @@ function CustomerOrderDetails() {
               <th scope="col">ItemAmount</th>
               <th scope="col">Date/Time</th>
               <th scope="col">Created_by</th>
+              <th scope="col">PhoneNumber</th>
               <th scope="col"></th>
               <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
             {orders.map((order) => (
-              <Order order={order} onDelete={deleteOrder} key={order.id} />
+              <Order order={order} onDelete={deleteOrder} customerPhoneNumber={customer.phonenumber} key={order.id} />
             ))}
           </tbody>
         </table>
+        {/* <button className='confirm order-button'>
+            Confirm Order
+          </button> */}
         <button
          className="back-button" onClick={clientList}>
-            Client List
+            Back | Client List
     </button>
         </div>
 
