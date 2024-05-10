@@ -5,20 +5,21 @@ The application has a REST API
 
 ## Auth Page
 Allows authenticated users to register and login
-![image](/src/assets/svg/Home.png)
-![image](/src/assets/svg/Home.png)
+![image](/frontend/src/assets/login.jpeg)
+!![image](/frontend/src/assets/signup.jpeg)
+
 
 ## Home page/CLients List
 Displays all customers available and allows user to enter new customers. 
 A user can then click to view the order details of a particular customer. 
 A user can also delete the customer details entirely
-![image](/src/assets/svg/SignIn.png)
+![image](/frontend/src/assets/client.jpeg)
 
-## Orlders List Page
+## Orders List Page
 Displays all orders available for a particular customer and allows user to enter new order details for the particular customer. 
 A user can then click to send a message confirming the order a parrticular customer. 
 A user can also delete the customer details entirely
-![image](/src/assets/svg/Profile.png)
+![image](/frontend/src/assets/order.jpeg)
 
 ## Setup and Installation
 
