@@ -14,12 +14,19 @@ function Home() {
   const [customerName, setCustomerName] = useState("");
   const [customerCode, setCustomerCode] = useState("");
   const [phonenumber, setPhoneNumber] = useState("");
+  const [error, setError] = useState("");
 
   // handle nacigation
   const navigate = useNavigate()
   const logout = () => {
     navigate('/logout')
   } 
+
+  // validations
+  const validatePhoneNumber = (phoneNumber) => {
+    const re = /^(07|01)\d{8}$/;
+    return re.test(phoneNumber);
+  };
 
   //   get customers as soon as page loads
   useEffect(() => {
@@ -54,6 +61,14 @@ function Home() {
   //   create customer
   const createCustomer = (e) => {
     e.preventDefault();
+
+
+    if (!validatePhoneNumber(phonenumber)) {
+      setError("Invalid phone number: Phone number must begin with '07' or '01'");
+      return;
+    }
+
+    // apicall
     api
       .post("/api/customers/", { customerName, customerCode, phonenumber })
       .then((res) => {
@@ -64,6 +79,8 @@ function Home() {
       })
       .catch((err) => alert(err));
   };
+
+  
 
   return (
     <>
@@ -104,9 +121,12 @@ function Home() {
           id="phonenumber"
           name="phonenumber"
           required
+          pattern="^(07|01)\d{8}$"
+          placeholder="'07****' or '01****'"
           onChange={(e) => setPhoneNumber(e.target.value)}
           value={phonenumber}
         />
+        {error && <p className="error-message">{error}</p>}
 
         <br />
         <input className="form-button" type="submit" value="Submit"></input>
