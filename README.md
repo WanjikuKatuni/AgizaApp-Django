@@ -24,31 +24,31 @@ Allows authenticated users to register and login
 ## Setup and Installation
 
 ### Prerequisites
-- Python 3.x installed on your system (Download Python)
-- Node.js installed on your system (Download Node.js)
+- Python 3.x installed on your system 
+- Node.js installed on your system 
 
 - Clone the repo to a local directory
 
 ### Backend Set up (Django)
 To set up;
-    - Create a virtual environment 
-    -- python3 -m venv env
-    - Activate the virtual environment:
-    -- source env/bin/activate  (for ubuntu)
-    -- .\env\Scripts\activate  (for windows)
-    - Install Django and other dependencies:
-    -- pip install django
-    - Navigate to the backend directory and run migrations: 
-    -- python manage.py migrate
-    - Start the django development server:
-    -- python manage.py runserver
+- Create a virtual environment 
+> python3 -m venv env
+- Activate the virtual environment:
+> source env/bin/activate  (for ubuntu)
+> .\env\Scripts\activate  (for windows)
+- Install Django and other dependencies:
+>  pip install django
+- Navigate to the backend directory and run migrations: 
+>  python manage.py migrate
+- Start the django development server:
+> python manage.py runserver
 
 ### Frontend Set up (Django)
 To set up;
-    - On another terminal, navigate to frontend directory, and install dependencies (make sure to be on virtual env):
-    -- npm install
-    - Start the Vite development server:
-    -- npm run dev
+- On another terminal, navigate to frontend directory, and install dependencies (make sure to be on virtual env):
+> npm install
+- Start the Vite development server:
+> npm run dev
 
 ## Setup and Installation
 - For production deployment, configure Django and Vite accordingly.
