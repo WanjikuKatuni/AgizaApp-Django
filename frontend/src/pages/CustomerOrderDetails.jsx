@@ -1,9 +1,10 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import api from "../api";
 import Order from "../components/Order";
+import "../styles/Customerorder.css"
 
 function CustomerOrderDetails() {
   const [orders, setOrders] = useState([]);
@@ -12,6 +13,13 @@ function CustomerOrderDetails() {
 
   const { customerId } = useParams();
   // console.log(customerId)
+
+  // navigate back to homepage
+  const navigate = useNavigate()
+
+  const clientList = () => {
+    navigate(`/`)
+  }
 
   // get all ordersof the customer as soon as the page loads/mounts
   useEffect(() => {
@@ -74,47 +82,53 @@ function CustomerOrderDetails() {
 
   return (
     <>
-      <h1>Client Orders</h1>
+    <div className="container-fluid overflow-hidden wrapper">
+      <div className="row gx-5">
+        {/* form */}
+        <div className="col-md-3">
+          <h2>Add Order</h2>
+            <form onSubmit={createOrder} className='form-container'>
+              <label htmlFor="itemName">Item Name:</label>
+              <input
+                className="form-input"
+                type="text"
+                id="itemName"
+                name="itemName"
+                required
+                onChange={(e) => setItemName(e.target.value)}
+                value={itemName}
+              />
+              <br />
 
-      <h2>Add Order</h2>
-      <form onSubmit={createOrder}>
-        <label htmlFor="itemName">Item Name:</label>
-        <br />
-        <input
-          type="text"
-          id="itemName"
-          name="itemName"
-          required
-          onChange={(e) => setItemName(e.target.value)}
-          value={itemName}
-        />
+              <label htmlFor="itemAmount">Item Amount:</label>
+              <input
+                className="form-input"
+                type="number"
+                id="itemAmount"
+                name="itemAmount"
+                required
+                onChange={(e) => setItemAmount(e.target.value)}
+                value={itemAmount}
+              />
 
-        <label htmlFor="itemAmount">Item Amount:</label>
-        <br />
-        <input
-          type="number"
-          id="itemAmount"
-          name="itemAmount"
-          required
-          onChange={(e) => setItemAmount(e.target.value)}
-          value={itemAmount}
-        />
-
-        <br />
-        <input type="submit" value="Submit"></input>
-      </form>
-
-      {/* list of orders */}
-      <div>
-        <h2>Order List</h2>
-        <table class="table">
+              <br />
+              <input className="form-button" type="submit" value="Submit"></input>
+            </form>
+        </div>
+        <div className="col-md-1"></div>
+        <div className="col-md-8">
+          {/* list of client orders */}
+          <h1 className="header">Client Orders</h1>
+          <table className="styled-table">
           <thead>
             <tr>
               <th scope="col">#</th>
               <th scope="col">ItemName</th>
               <th scope="col">ItemAmount</th>
-              <th scope="col">Time</th>
+              <th scope="col">Date/Time</th>
               <th scope="col">Created_by</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
@@ -123,6 +137,20 @@ function CustomerOrderDetails() {
             ))}
           </tbody>
         </table>
+        <button
+         className="back-button" onClick={clientList}>
+            Client List
+    </button>
+        </div>
+
+      </div>
+
+      
+
+      {/* list of orders */}
+      <div>
+
+      </div>
       </div>
     </>
   );
