@@ -3,6 +3,8 @@ A simple customer orders database that allows a user to input customer details, 
 
 The application includes REST API
 
+Live link https://agizareactvite-8jsk.vercel.app
+
 ## Auth Page
 Allows authenticated users to register and login
 ![image](/frontend/src/assets/login.jpeg)
