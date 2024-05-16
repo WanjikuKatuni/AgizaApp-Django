@@ -1,8 +1,6 @@
 from django.urls import path
 from . import views
-from django.conf import settings
-from django.urls import path, include
-from django.conf.urls.static import static
+
 
 urlpatterns = [
     
@@ -16,6 +14,4 @@ urlpatterns = [
 
     # path("customer/details/<int:customer_pk>/orders/details/<int:pk>/", views.OrderDetailAPIView.as_view(), name="order-detail")
 
-    # import view index from build
-     path('', views.index, name='index')
 ]

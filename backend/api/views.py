@@ -88,6 +88,3 @@ class CreateUserView(generics.CreateAPIView):
     serializer_class = UserSerializer
     permission_classes = [AllowAny]
 
-# view from build
-def index(request):
-    return render(request, 'index.html')
